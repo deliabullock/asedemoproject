@@ -1,10 +1,112 @@
-<!DOCTYPE HTML>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ 
+pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+header {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+footer {
+    padding: 0em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+nav {
+    float: left;
+    max-width: 150px;
+    margin: 0;
+    padding: 1em;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul2{
+    text-decoration: none;
+}
+nav ul a {
+    text-decoration: none;
+}
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+</style>
 </head>
 <body>
-    <p>Get your greeting <a href="/greeting">here</a></p>
+<div class="container">
+
+<header>
+   <h1>Welcome to Telestrations!</h1>
+</header>
+  
+<nav>
+  <ul>
+		<form action="mainPage" method="post">  
+			User    :<br/><input style="width: 130px" type="text" name="name"/><br/>  
+			Password:<br/><input style="width: 130px" type="password" name="password"/><br/>  
+			<div align="right">
+				<input type="submit" value="sign in"/>
+			</div>
+		</form>
+		<div align="right">
+			<a href="newAccPage"><font size="2" >or create a new account</font></a>
+		</div>
+  </ul>
+</nav>
+
+<article>
+	<h1>Telestrations!</h1>
+	<p>
+		Telestrations or "Eat Poop You Cat" is a game combining the classic games:
+		<br/>
+		Pictionary and Telephone
+	</p>
+	<p>
+		Players will write a phrase or draw a picture to pass to the next player. 
+		The next player will then do the opposite and pass their creation to the next player.  
+		Play continues until the specified limit and produces hilarious results!
+	</p>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+</article>
+
+<footer>thereadZADS</footer>
+
+</div>
+
 </body>
 </html>
