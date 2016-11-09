@@ -1,26 +1,51 @@
-package com.therealzads.telestrations.controller;
+//package com.therealzads.telestrations.controller;
+package hello;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import javax.servlet.http.HttpServletRequest;  
-import javax.servlet.http.HttpServletResponse;  
-import org.springframework.stereotype.Controller;  
- 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class MainPageController {
-	String message = "Welcome back to Telestrations";
  
+	@Autowired
+	private GameRepository gameRepo;
+
 	@RequestMapping("/mainPage")
-	public ModelAndView showMessage(
-			@RequestParam(value = "name", required = false, defaultValue = "Mr. Hax0r <br/> But really, please login") String name) {
-		System.out.println("in controller");
- 
-		ModelAndView mv = new ModelAndView("mainpage");
-		mv.addObject("message", message);
-		mv.addObject("name", name);
-		return mv;
+	public String showMainPage(
+			@RequestParam(value = "name", required = false, defaultValue = "Mr. Hax0r <br/> But really, please login") String username, Model model) {
+		List<Game> ongoingGames = new ArrayList<Game>();
+		List<Game> userOngoingGames = new ArrayList<Game>();
+		List<Game> userCompletedGames = new ArrayList<Game>();
+		List<Game> completedGames = new ArrayList<Game>();
+
+		for (Game game : gameRepo.findAll()) {
+			if (!game.getPlayers().contains(username)){
+				if(game.getLength() > game.getCurrLength()){
+					ongoingGames.add(game);
+				} else {
+					completedGames.add(game);
+				}					
+			} else {
+				if(game.getLength() > game.getCurrLength()){
+					userOngoingGames.add(game);
+				} else {
+					userCompletedGames.add(game);
+				}
+			}		
+			System.out.println("Hey! " + game.getName());
+		}
+
+		model.addAttribute("ongoinglist", ongoingGames);
+		model.addAttribute("completedlist", completedGames);
+		model.addAttribute("userongoinglist", userOngoingGames);
+		model.addAttribute("usercompletedlist", userCompletedGames);
+		model.addAttribute("username", username);
+		model.addAttribute("msg", "Welcome back to Telestrations");
+		return "mainpage";
 	}
 }

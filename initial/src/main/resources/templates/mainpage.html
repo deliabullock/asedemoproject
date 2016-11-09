@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+header {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+footer {
+    padding: 0em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+nav {
+    float: left;
+    max-width: 150px;
+    margin: 0;
+    padding: 1em;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul2{
+    text-decoration: none;
+}
+nav ul a {
+    text-decoration: none;
+}
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+.greeter {
+    display: inline;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+   <h1>
+   	<!-- <font style="color: blue">${username}'s&nbsp;</font> -->
+   	Tele<font style="color: yellow">strations</font>
+   </h1>
+</header>
+<nav>
+  <ul>
+
+  </ul>
+</nav>
+
+<article>
+	<h1>
+		<div class="greeter" th:text="${msg}"/>
+		<div class="greeter" th:text="${username}" style="color: blue"></div>!
+	</h1>
+	<p>
+		Your ongoing games:
+		<br/>
+    		<tr th:each="game :  ${userongoinglist}">
+ 			<form method="POST" th:action="@{/game}">
+           			<input type="hidden" name="username" th:value="${username}" />
+           			<input type="hidden" name="gameId" th:value="${game.id}" />
+          			<button th:text="${game.name}" type="submit" name="submit" value="value" class="link-button"></button>
+       			</form>
+		</tr>
+	</p>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<p>
+		Your completed games:
+		<br/>
+    		<tr th:each="game :  ${usercompletedlist}">
+ 			<form method="POST" th:action="@{/game}">
+           			<input type="hidden" name="username" th:value="${username}" />
+           			<input type="hidden" name="gameId" th:value="${game.id}" />
+          			<button th:text="${game.name}" type="submit" name="submit" value="value" class="link-button"></button>
+       			</form>
+		</tr>
+	</p>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<p>
+		Games to join:
+		<br/>
+    		<tr th:each="game :  ${ongoinglist}">
+ 			<form method="POST" th:action="@{/game}">
+           			<input type="hidden" name="username" th:value="${username}" />
+           			<input type="hidden" name="gameId" th:value="${game.id}" />
+          			<button th:text="${game.name}" type="submit" name="submit" value="value" class="link-button"></button>
+       			</form>
+		</tr>
+	</p>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<p>
+		Other's finshed games:
+    		<tr th:each="game :  ${completedlist}">
+ 			<form method="POST" th:action="@{/game}">
+           			<input type="hidden" name="username" th:value="${username}" />
+           			<input type="hidden" name="gameId" th:value="${game.id}" />
+          			<button th:text="${game.name}" type="submit" name="submit" value="value" class="link-button"></button>
+       			</form>
+		</tr>
+	</p>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+</article>
+
+<footer>therealZADS</footer>
+
+</div>
+</body>
+</html>

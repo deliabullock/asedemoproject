@@ -1,28 +1,42 @@
 package hello;
 
 import org.springframework.data.annotation.Id;
-
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class Customer {
 
     @Id
     public String id;
 
-    public String firstName;
-    public String lastName;
+    public String username;
+    public String password;
+//    StandardPasswordEncoder encoder = new StandardPasswordEncoder("secret");
 
     public Customer() {}
 
-    public Customer(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Customer(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getId() {
+	return this.id;
+    }
+
+    public String getUsername() {
+	return this.username;
+    }
+
+    public boolean match(String p) {
+//	return (this.password == encoder.encode(p));
+	return this.password.equals(p);
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%s, firstName='%s', lastName='%s']",
-                id, firstName, lastName);
+                "Customer[id=%s, username='%s', password='%s']",
+                id, username, password);
     }
 
 }

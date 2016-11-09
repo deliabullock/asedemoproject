@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Telestrations Create New Account</title>
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+header {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+footer {
+    padding: 0em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+nav {
+    float: left;
+    max-width: 150px;
+    margin: 0;
+    padding: 1em;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul2{
+    text-decoration: none;
+}
+nav ul a {
+    text-decoration: none;
+}
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+   <h1>Create a New Tele<font style="color: yellow">strations</font> Account!</h1>
+</header>
+
+<nav>
+  <ul>
+		<div><font size="2" th:text="${msg}"></font></div>
+  		<div style="color: red"><font size="2" th:text="${error}"></font></div>
+		<form name="newAccForm"  th:action="@{/newaccpage}" method="POST">   
+			New User    :<br/><input style="width: 130px" type="text" name="username"/><br/>  
+			New Password:<br/><input style="width: 130px" type="password" name="password"/><br/> 
+			<div align="left">
+				<button type="submit" name="submit" value="value" class="link-button">create new account</button>
+			</div>
+		</form>
+		<div align="right">
+			<a href="login"><font size="2" >or back to login</font></a>
+		</div>
+  </ul>
+</nav>
+
+<article>
+	<h1>New account creation</h1>
+	<p>
+		Please enter a unique username and password
+		<br/>
+		then press create new to create your Telestrations account!
+	</p>
+	<p>
+
+	</p>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+</article>
+
+<footer>therealZADS</footer>
+</div>	
+</body>
+</html>
