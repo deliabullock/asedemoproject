@@ -17,13 +17,15 @@ public class MainPageController {
 
 	@RequestMapping("/mainPage")
 	public String showMainPage(
-			@RequestParam(value = "name", required = false, defaultValue = "Mr. Hax0r <br/> But really, please login") String username, Model model) {
+			@RequestParam(value = "username", required = true) String username, Model model) {
 		List<Game> ongoingGames = new ArrayList<Game>();
 		List<Game> userOngoingGames = new ArrayList<Game>();
 		List<Game> userCompletedGames = new ArrayList<Game>();
 		List<Game> completedGames = new ArrayList<Game>();
 
 		for (Game game : gameRepo.findAll()) {
+			System.out.println(game.getPlayers());
+			System.out.println(username);
 			if (!game.getPlayers().contains(username)){
 				if(game.getLength() > game.getCurrLength()){
 					ongoingGames.add(game);
@@ -37,7 +39,6 @@ public class MainPageController {
 					userCompletedGames.add(game);
 				}
 			}		
-			System.out.println("Hey! " + game.getName());
 		}
 
 		model.addAttribute("ongoinglist", ongoingGames);

@@ -19,8 +19,8 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		repository.deleteAll();
-		gameRepo.deleteAll();
+	//	repository.deleteAll();
+	//	gameRepo.deleteAll();
 		
 		//repository.save(new Customer("Alice", "Smith"));
 		//repository.save(new Customer("Bob", "Smith"));

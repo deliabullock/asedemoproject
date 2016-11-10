@@ -19,15 +19,14 @@ public class LoginController {
         private GameRepository gameRepo;
  
 	@RequestMapping("/login")
-	public String showLogin(
-			@RequestParam(value = "name", required = false, defaultValue = "user") String name, Model model) {
+	public String showLogin(Model model) {
 		model.addAttribute("msg", "Please login below:");
 		model.addAttribute("error", "");
 		return "login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String submit(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+	public String submit(@RequestParam(value="username", required=true) String username, @RequestParam("password") String password, Model model) {
 		System.out.println(username);
 		System.out.println(password);
 		if (repository.findByUsername(username) != null && repository.findByUsername(username).match(password)){

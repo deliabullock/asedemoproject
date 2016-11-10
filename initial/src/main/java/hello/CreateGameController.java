@@ -18,18 +18,19 @@ public class CreateGameController {
  
 	@RequestMapping("/creategame")
 	public String showCreateGame(
-			@RequestParam(value = "name", required = false, defaultValue = "user") String name, Model model) {
-		String user = "Emily";
-		model.addAttribute("username", user);
+			@RequestParam(value = "username", required = true) String username, Model model) {
+		model.addAttribute("username", username);
 		return "creategame";
 	}
 
 	@RequestMapping(value = "/creategame", method = RequestMethod.POST)
-	public String submit(@RequestParam("gameName") String name, @RequestParam("username") String username, @RequestParam("length") int length, @RequestParam("phrase") String phrase, Model model) {
+	public String submit(@RequestParam("gameName") String name, @RequestParam(value = "username", required = true) String username, @RequestParam("length") int length, @RequestParam("phrase") String phrase, Model model) {
 		System.out.println(name);
 		System.out.println(length);
 		System.out.println(phrase);
+		System.out.println(username);
 		gameRepo.save(new Game(name, phrase, username, length, 0));	
+		model.addAttribute("username", username);
 		return "creategame";
 	}
 }
