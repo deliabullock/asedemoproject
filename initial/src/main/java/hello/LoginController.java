@@ -14,7 +14,7 @@ import java.util.List;
 public class LoginController {
 	
 	@Autowired
-	private CustomerRepository repository;
+	private UserRepository repository;
         @Autowired
         private GameRepository gameRepo;
  

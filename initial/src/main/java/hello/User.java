@@ -3,7 +3,7 @@ package hello;
 import org.springframework.data.annotation.Id;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class Customer {
+public class User {
 
     @Id
     public String id;
@@ -12,9 +12,9 @@ public class Customer {
     public String password;
 //    StandardPasswordEncoder encoder = new StandardPasswordEncoder("secret");
 
-    public Customer() {}
+    public User() {}
 
-    public Customer(String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }

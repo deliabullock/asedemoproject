@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application implements CommandLineRunner {
 
 	@Autowired
-	private CustomerRepository repository;
+	private UserRepository repository;
 	@Autowired
 	private GameRepository gameRepo;
 

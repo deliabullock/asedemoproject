@@ -16,7 +16,7 @@ public class NewAccountController {
 //	StandardPasswordEncoder encoder = new StandardPasswordEncoder("secret");
          
 	@Autowired
-        private CustomerRepository repository;
+        private UserRepository repository;
 	@Autowired
         private GameRepository gameRepo;
  
@@ -38,7 +38,7 @@ public class NewAccountController {
                     model.addAttribute("error", "Incorrect");
                     return "newaccpage";
 		 }
-                 repository.save(new Customer(username, password));
+                 repository.save(new User(username, password));
 		List<Game> ongoingGames = new ArrayList<Game>();
 		List<Game> userOngoingGames = new ArrayList<Game>();
 		List<Game> userCompletedGames = new ArrayList<Game>();
