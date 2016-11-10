@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+header {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+footer {
+    padding: 0em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+nav {
+    float: left;
+    max-width: 150px;
+    margin: 0;
+    padding: 1em;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul2{
+    text-decoration: none;
+}
+nav ul a {
+    text-decoration: none;
+}
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+   <h1>Create a New Tele<font style="color: yellow">strations</font> Game!</h1>
+</header>
+<nav>
+  <ul>
+
+  </ul>
+</nav>
+<article>
+	<h1>Ok let's loo at this!</h1>
+	<p>
+		Game:<div th:text="${game.name}"></div>
+		Length:<div th:text="${game.length}"></div>
+		Current Place:<div th:text="${game.currLength}"></div>
+		<div align="right">
+ 			<form th:action="@{/mainPage}">
+           			<input type="hidden" name="username" th:value="${username}" />
+          			<button type="submit" name="submit" value="value" class="link-button">or go back to homepage</button>
+       			</form>
+		</div>
+	</p>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+</article>
+<footer>therealZADS</footer>
+
+</div>
+</body>
+</html>

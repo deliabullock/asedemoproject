@@ -70,6 +70,15 @@ article {
 		<div class="greeter" th:text="${username}" style="color: blue"></div>!
 	</h1>
 	<p>
+		<br/>
+ 		<form method="GET" th:action="@{/creategame}">
+           		<input type="hidden" name="username" th:value="${username}" />
+          		<button type="submit" name="submit" value="value" class="link-button">Create game</button>
+       		</form>
+	</p>
+
+
+	<p>
 		Your ongoing games:
 		<br/>
     		<tr th:each="game :  ${userongoinglist}">
