@@ -63,7 +63,7 @@ article {
  		<form method="POST" th:action="@{/creategame}">
            		<input type="hidden" name="username" th:value="${username}" />
 			Game Name   :<br/><input style="width: 130px" type="text" name="gameName"/><br/>  
-			length (# of rounds): <br/><input style="width: 130px" type="text" name="length"/><br/>  
+			length (# of rounds): <br/><input style="width: 130px" type="number" name="length"/><br/>  
 			Phrase: <br/><input style="width: 130px" type="text" name="phrase"/><br/>  
 			<div align="left">
           			<button type="submit" name="submit" value="value" class="link-button">CREATE GAME</button>
