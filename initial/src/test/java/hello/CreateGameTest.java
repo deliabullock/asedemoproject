@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -15,15 +16,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class CreateGameTest {
 
+    Game game;
+
     @Autowired
     private CreateGameController controller;
+
+    @Before
+    public void setUp() {
+        game = new Game("Game1", "Tree", "steph", 5, 1);
+    }
 
     @Test
     public void contexLoads() throws Exception {
         //make sure that controller is being created - not a blackbox test
         //assertThat(controller).isNotNull();
-        Game game = new Game("Game1", "Tree", "steph", 5, 1);
-
         assertTrue("Check that game exists: ", game.getId() != "");
         assertEquals("Check that game is associated with correct creator : ", "steph", game.getCreator());
         assertNotNull("Check that there's input for the game name:", game.getName());

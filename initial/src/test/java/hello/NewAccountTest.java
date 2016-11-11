@@ -22,6 +22,7 @@ public class NewAccountTest {
     @Test
     public void contexLoads() throws Exception {
     	User user = new User("tiffany", "pwd");
+    	//repository.save(user);
     	//assertTrue("Checks that username is unique: ", user.getId() == repository.findByUsername("tiffany").getId());
     	//assertTrue("Checks that usernames are not allowed to be null: ", repository.findByUsername("") == null);
 
