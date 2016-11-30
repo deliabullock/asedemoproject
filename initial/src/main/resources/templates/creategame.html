@@ -44,6 +44,9 @@ article {
     padding: 1em;
     overflow: hidden;
 }
+#logout {
+	float: right;
+}
 </style>
 </head>
 <body>
@@ -101,6 +104,9 @@ article {
 	<br/>
 </article>
 <footer>therealZADS</footer>
+<form method="GET" th:action="@{/logout}">
+	<button id="logout" type="submit">log out</button>
+</form>
 
 </div>
 </body>

@@ -64,4 +64,12 @@ public class LoginController {
 			return "login";
 		}	
 	}
+	
+	@RequestMapping("/logout")
+	public String logout(Model model) {
+		model.addAttribute("msg", "Successfully logged out!");
+		model.addAttribute("error", "");
+		return "login";
+	}
+
 }
