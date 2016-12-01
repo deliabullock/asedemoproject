@@ -54,6 +54,9 @@ article {
 
 <header>
    <h1>Create a New Tele<font style="color: yellow">strations</font> Game!</h1>
+   <form method="GET" th:action="@{/logout}">
+	<button id="logout" type="submit">log out</button>
+   </form>
 </header>
 <nav>
   <ul>
@@ -104,10 +107,6 @@ article {
 	<br/>
 </article>
 <footer>therealZADS</footer>
-<form method="GET" th:action="@{/logout}">
-	<button id="logout" type="submit">log out</button>
-</form>
-
 </div>
 </body>
 </html>
