@@ -60,6 +60,9 @@ article {
    	<!-- <font style="color: blue">${username}'s&nbsp;</font> -->
    	Tele<font style="color: yellow">strations</font>
    </h1>
+   <form method="GET" th:action="@{/logout}">
+	<button id="logout" type="submit">log out</button>
+   </form>
 </header>
 <nav>
   <ul>
@@ -144,9 +147,6 @@ article {
 </article>
 
 <footer>therealZADS</footer>
-<form method="GET" th:action="@{/logout}">
-	<button id="logout" type="submit">log out</button>
-</form>
 
 </div>
 </body>
