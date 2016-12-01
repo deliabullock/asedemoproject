@@ -14,6 +14,7 @@ public class Game {
     private int length; //predetermined length of game
     private int currLength; //current length of the game
     private List<String> players; // game players, contains creator
+    private ArrayList<String[]> ImagePhrasePairs = new ArrayList<String[]>();
 
     
     public Game() {
@@ -72,6 +73,17 @@ public class Game {
 
     public void setCurrLength(int currLength) {
         this.currLength = currLength;
+    }    
+
+    public void addPhrase(String id) {
+        String [] phraseId = new String[2];
+        phraseId[0] = id;
+        ImagePhrasePairs.add(phraseId);
     }
-    
-}
+  
+    public void addImage(String id) {
+        String [] imageId = ImagePhrasePairs.remove(ImagePhrasePairs.size()-1);
+        imageId[1] = id;
+        ImagePhrasePairs.add(imageId);
+    }  
+}    

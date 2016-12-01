@@ -66,6 +66,7 @@ article {
 <article>
 	<h1>Create a new game of Telestrations!</h1>
 	<p>
+  		<div style="color: red"><font size="2" th:text="${error}"></font></div>
  		<form method="POST" th:action="@{/creategame}">
            		<input type="hidden" name="username" th:value="${username}" />
 			Game Name   :<br/><input style="width: 130px" type="text" name="gameName"/><br/>  

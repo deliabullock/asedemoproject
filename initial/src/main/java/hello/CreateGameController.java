@@ -1,4 +1,3 @@
-//package com.therealzads.telestrations.controller;
 package hello;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +18,28 @@ public class CreateGameController {
 	@RequestMapping("/creategame")
 	public String showCreateGame(
 			@RequestParam(value = "username", required = true) String username, Model model) {
-		model.addAttribute("username", username);
-		return "creategame";
+		return loadCreateGame(username, "", model);
 	}
 
 	@RequestMapping(value = "/creategame", method = RequestMethod.POST)
-	public String submit(@RequestParam("gameName") String name, @RequestParam(value = "username", required = true) String username, @RequestParam("length") int length, @RequestParam("phrase") String phrase, Model model) {
-		System.out.println(name);
-		System.out.println(length);
-		System.out.println(phrase);
-		System.out.println(username);
-		gameRepo.save(new Game(name, phrase, username, length, 0));	
+	public String submit(@RequestParam("gameName") String name, @RequestParam(value = "username", required = true) String username, @RequestParam("length") String length, @RequestParam("phrase") String phrase, Model model) {	
+		int gameLength;
+		try{
+        		gameLength = Integer.parseInt(length);
+    		}catch(NumberFormatException e){
+			return loadCreateGame(username, "Must enter game length greater than 0.", model);
+    		}
+		if (phrase == null || phrase == "" || name == null || phrase == "" || gameLength <= 0) {
+			return loadCreateGame(username, "Phrase and name fields must be nonempty. Length must be great than or equal to 1.", model);
+		}
+		gameRepo.save(new Game(name, phrase, username, gameLength, 0));	
+		return loadCreateGame(username, name + " game successfully created!", model);
+	}
+
+	private String loadCreateGame(String username, String error, Model model) {
 		model.addAttribute("username", username);
+		model.addAttribute("error", error);
 		return "creategame";
 	}
+
 }

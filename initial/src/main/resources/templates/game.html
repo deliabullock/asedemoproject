@@ -52,6 +52,9 @@ article {
 #logout {
 	float: right;
 }
+.game-stats {
+	display: inline;
+}
 </style>
 </head>
 <body>
@@ -71,10 +74,12 @@ article {
 <article>
 	<h1>Ok let's look at this!</h1>
 	<p>
-		Game:<div th:text="${game.name}"></div>
-		Length:<div th:text="${game.length}"></div>
-		Current Place:<div th:text="${game.currLength}"></div>
+		Game:<div class="game-stats" th:text="${game.name}"></div>
+		Length:<div class="game-stats" th:text="${game.length}"></div>
+		Current Place:<div class="game-stats" th:text="${game.currLength}"></div>
 	</p>
+
+	
 	
   	<div class="imgcont" id="paint">
 		<canvas id="myCanvas" style="border:1px solid #000000;">
