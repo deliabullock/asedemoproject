@@ -11,7 +11,11 @@ public class Application implements CommandLineRunner {
 	@Autowired
 	private UserRepository repository;
 	@Autowired
+	private PasswordRepository pwRepo;
+	@Autowired
 	private GameRepository gameRepo;
+
+	private PasswordAuth pwauthentication = new PasswordAuth(16); 
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

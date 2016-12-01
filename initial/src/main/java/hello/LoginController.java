@@ -15,6 +15,8 @@ public class LoginController {
 	
 	@Autowired
 	private UserRepository repository;
+	@Autowired
+	private PasswordRepository pwRepo;
         @Autowired
         private GameRepository gameRepo;
  
@@ -27,9 +29,13 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String submit(@RequestParam(value="username", required=true) String username, @RequestParam("password") String password, Model model) {
-		System.out.println(username);
-		System.out.println(password);
-		if (repository.findByUsername(username) != null && repository.findByUsername(username).match(password)){
+		User user = repository.findByUsername(username);
+		if(user == null) {
+			model.addAttribute("msg", "Please login below:");
+			model.addAttribute("error", "Incorrect");
+			return "login";
+		}
+		if (pwRepo.findByHash(user.getHash()) != null && NewAccountController.pwauthentication.authenticate(password.toCharArray(), pwRepo.findByHash(user.getHash()).getToken())){
 			List<Game> ongoingGames = new ArrayList<Game>();
 			List<Game> userOngoingGames = new ArrayList<Game>();
 			List<Game> userCompletedGames = new ArrayList<Game>();

@@ -1,7 +1,6 @@
 package hello;
 
 import org.springframework.data.annotation.Id;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class User {
 
@@ -9,14 +8,13 @@ public class User {
     public String id;
 
     public String username;
-    public String password;
-//    StandardPasswordEncoder encoder = new StandardPasswordEncoder("secret");
+    public String hash;
 
     public User() {}
 
-    public User(String username, String password) {
+    public User(String username, String hash) {
         this.username = username;
-        this.password = password;
+        this.hash = hash;
     }
 
     public String getId() {
@@ -27,16 +25,8 @@ public class User {
 	return this.username;
     }
 
-    public boolean match(String p) {
-//	return (this.password == encoder.encode(p));
-	return this.password.equals(p);
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "Customer[id=%s, username='%s', password='%s']",
-                id, username, password);
+    public String getHash() {
+	return this.hash;
     }
 
 }
