@@ -162,6 +162,7 @@ article {
 			alert(imgData);
 		}
     </script>
+	<p id="imgData"></p>
 	
 	<p>
 		<div align="left">
@@ -172,6 +173,8 @@ article {
 				<input id="saveimg" type="button" value="Submit" onclick="saveImg();" />
 			</form>
 		</div>
+		
+		
 		<div align="right">
  			<form th:action="@{/mainPage}">
 				<input type="hidden" name="username" th:value="${username}" />
