@@ -86,6 +86,11 @@ article {
 			Your browser does not support the HTML5 canvas tag.
 		</canvas>
 	</div>
+	<div class="imgcont" id="paint">
+		<canvas id="myCanvas2" style="border:1px solid #000000;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+	</div>
 	
     <script>
 		var canvas = document.getElementById('myCanvas');
@@ -124,14 +129,48 @@ article {
 			ctx.lineTo(mouse.x, mouse.y);
 			ctx.stroke();
 		};
+	    
+	    		
+		var destinationCanvas = document.getElementById('myCanvas2');
+
+		destinationCanvas.width = parseInt(paint_style.getPropertyValue('width'));
+		destinationCanvas.height = parseInt(paint_style.getPropertyValue('height'));
+	
+		//get the destination context
+		destinationCtx = destinationCanvas.getContext('2d');
+		
+		function saveImg() { 
+
+			var image, destinationCtx;
+
+			//create the image
+			image = new Image();
+
+			//get the base64 data
+			image.src = canvas.toDataURL('image/png');
+			var imgData = image.src;
+			
+			document.getElementById("imgData").innerHTML = imgData.toString();
+			
+			//get the destination context
+			destinationCtx = destinationCanvas.getContext('2d');
+
+			//copy the data
+			destinationCtx.drawImage(image, 0, 0);
+			
+			
+			alert(imgData);
+		}
     </script>
 	
 	<p>
 		<div align="left">
- 			<form th:action="@{/mainPage}">
-				<input type="hidden" name="username" th:value="${username}" />
-				<button type="submit" name="submit" value="value" class="link-button">Submit!</button>
-       		</form>
+			<form th:action="@{/game}" method="POST">
+				<input type="hidden" name="username" th:value="${username}" /> 
+				<input type="hidden" name="gameId" th:value="${game.id}" />
+				<input type="hidden" name="imgData" th:value="imgData" />
+				<input id="saveimg" type="button" value="Submit" onclick="saveImg();" />
+			</form>
 		</div>
 		<div align="right">
  			<form th:action="@{/mainPage}">
