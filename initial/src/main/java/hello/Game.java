@@ -73,16 +73,26 @@ public class Game {
 
     public void setCurrLength(int currLength) {
         this.currLength = currLength;
+    }
+
+    public String getLastPhrase() {
+        String [] imageId = ImagePhrasePairs.get(ImagePhrasePairs.size()-1);
+	return imageId[1];
     }    
 
-    public void addPhrase(String id) {
+    public String getLastImage() {
+        String [] imageId = ImagePhrasePairs.get(ImagePhrasePairs.size()-1);
+	return imageId[0];
+    }
+    
+    public void addImage(String id) {
 	currLength = currLength + 1;
         String [] phraseId = new String[2];
         phraseId[0] = id;
         ImagePhrasePairs.add(phraseId);
     }
   
-    public void addImage(String id) {
+    public void addPhrase(String id) {
 	currLength = currLength + 1;
         String [] imageId = ImagePhrasePairs.remove(ImagePhrasePairs.size()-1);
         imageId[1] = id;

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+div.imgcont {
+    width:600px;
+	height:400px;
+    border: 1px solid gray;
+}
+header {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+footer {
+    padding: 0em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+nav {
+    float: left;
+    max-width: 150px;
+    margin: 0;
+    padding: 1em;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul2{
+    text-decoration: none;
+}
+nav ul a {
+    text-decoration: none;
+}
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+#logout {
+	float: right;
+}
+.game-stats {
+	display: inline;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+   <h1>Create a New Tele<font style="color: yellow">strations</font> Game!</h1>
+	<form method="GET" th:action="@{/logout}">
+		<button id="logout" type="submit">log out</button>
+	</form>
+</header>
+<nav>
+  <ul>
+
+  </ul>
+</nav>
+<article>
+	<h1>Let's get drawing!</h1>
+	<p>
+		Game: <div th:text="${game.name}"></div>
+		Length: <div th:text="${game.length}"></div>
+		Length: <div th:="${game.length}"></div>
+		Current Place: <div th:text="${game.currLength}"></div>
+	</p>
+
+	
+	In the space below, draw your best depiction of this phrase:
+	<div th:text="${phrase}"></div>
+
+	<!-- DRAWING THING HERE -->
+	
+	<p>
+		<div align="left">
+			<div style="color: red"><font size="2" th:text="${error}"></font></div>
+ 			<form th:action="@{/imageguess}" method="POST">
+				<input type="text" name="image" />
+				<input type="hidden" name="username" th:value="${username}" />
+				<input type="hidden" name="gameid" th:value="${game.id}" />
+				<input type="hidden" name="currlen" th:value="${game.currLength}" />
+				<button type="submit" name="submit" value="value" class="link-button">Submit!</button>
+       			</form>
+		</div>
+		<div align="right">
+ 			<form th:action="@{/mainPage}">
+				<input type="hidden" name="username" th:value="${username}" />
+				<button type="submit" name="submit" value="value" class="link-button">or go back to homepage</button>
+       			</form>
+		</div>
+	</p>
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+</article>
+<footer>therealZADS</footer>
+
+</div>
+</body>
+</html>

@@ -30,8 +30,8 @@ public class Application implements CommandLineRunner {
 		//repository.save(new Customer("Bob", "Smith"));
 
                 // save a couple of customers
-                gameRepo.save(new Game("Game1", "cat", "Emily", 2, 0));
-                gameRepo.save(new Game("Game2", "dog", "Jenn", 2, 1));	
+                //gameRepo.save(new Game("Game1", "cat", "Emily", 2, 0));
+                //gameRepo.save(new Game("Game2", "dog", "Jenn", 2, 1));	
                 //gameRepo.save(new Game());
                 //gameRepo.save(new Game());	
 
