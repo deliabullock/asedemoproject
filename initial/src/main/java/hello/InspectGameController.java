@@ -24,7 +24,7 @@ public class InspectGameController {
 		return "game";
 	}
 	
-	@RequestMapping(value = "/game", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/game", method = RequestMethod.POST)
 	public String submit(
 			@RequestParam(value = "username", required = true) String username, 
 			@RequestParam(value = "gameId", required = true) String gameId, 
@@ -36,6 +36,6 @@ public class InspectGameController {
 		model.addAttribute("imgData", imgData);
 		model.addAttribute("username", username);
 		return "game";
-	}
+	}*/
 	
 }
