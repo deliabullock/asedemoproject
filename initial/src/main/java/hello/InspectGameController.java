@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class InspectGameController {
 		return "game";
 	}
 	
-	/*@RequestMapping(value = "/game", method = RequestMethod.POST)
+	@RequestMapping(value = "/game", method = RequestMethod.POST)
 	public String submit(
 			@RequestParam(value = "username", required = true) String username, 
 			@RequestParam(value = "gameId", required = true) String gameId, 
@@ -36,6 +37,6 @@ public class InspectGameController {
 		model.addAttribute("imgData", imgData);
 		model.addAttribute("username", username);
 		return "game";
-	}*/
+	}
 	
 }
