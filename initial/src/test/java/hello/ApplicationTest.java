@@ -11,7 +11,7 @@ public class ApplicationTest {
 
     @Test
     public void contextLoads() throws Exception {
-    	//fails if application context cannot start
+    	//test fails if application context cannot start
     }
 
 }
