@@ -23,4 +23,19 @@ public class InspectGameController {
 		model.addAttribute("username", username);
 		return "game";
 	}
+	
+	@RequestMapping(value = "/game", method = RequestMethod.POST)
+	public String submit(
+			@RequestParam(value = "username", required = true) String username, 
+			@RequestParam(value = "gameId", required = true) String gameId, 
+			@RequestParam(value = "imgData", required = false) String imgData,
+			Model model) {
+		System.out.println(username);
+		System.out.println(imgData);
+		model.addAttribute("game", gameRepo.findById(gameId));
+		model.addAttribute("imgData", imgData);
+		model.addAttribute("username", username);
+		return "game";
+	}
+	
 }
