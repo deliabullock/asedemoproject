@@ -10,9 +10,9 @@ public class Image {
     public String username;
     public String image; //image data stored as string
 
-    public Phrase() {}
+    public Image() {}
 
-    public Phrase(String username, String image) {
+    public Image(String username, String image) {
         this.username = username;
         this.image = image;
     }
