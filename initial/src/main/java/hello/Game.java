@@ -76,12 +76,14 @@ public class Game {
     }    
 
     public void addPhrase(String id) {
+	currLength = currLength + 1;
         String [] phraseId = new String[2];
         phraseId[0] = id;
         ImagePhrasePairs.add(phraseId);
     }
   
     public void addImage(String id) {
+	currLength = currLength + 1;
         String [] imageId = ImagePhrasePairs.remove(ImagePhrasePairs.size()-1);
         imageId[1] = id;
         ImagePhrasePairs.add(imageId);
