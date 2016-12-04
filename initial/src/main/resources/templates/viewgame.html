@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+div.imgcont {
+    width:600px;
+	height:400px;
+    border: 1px solid gray;
+}
+header {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+footer {
+    padding: 0em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+nav {
+    float: left;
+    max-width: 150px;
+    margin: 0;
+    padding: 1em;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul2{
+    text-decoration: none;
+}
+nav ul a {
+    text-decoration: none;
+}
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+#logout {
+	float: right;
+}
+.game-stats {
+	display: inline;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+   <h1>Viewing a Tele<font style="color: yellow">strations</font> Game!</h1>
+	<form method="GET" th:action="@{/logout}">
+		<button id="logout" type="submit">log out</button>
+	</form>
+</header>
+<nav>
+  <ul>
+
+  </ul>
+</nav>
+<article>
+	<h1 th:text="${game.name}"></h1>
+	<p>
+		Viewing Phrase/Image Set #<div th:text="${displayturn}"></div>
+		<br/>
+
+		Before: <div th:text="${phrase}"></div>
+		<br/>
+		<div class="imgcont" id="paint">
+			<canvas id="myCanvas" style="border:1px solid #000000;">
+				Your browser does not support the HTML5 canvas tag.
+			</canvas>
+		</div>
+		<br/>
+		After: <div th:text="${phrase2}"></div>
+	</p>
+	
+	<input type="hidden" name="inImgData" id="inImgData" th:value="${imgData0}" />
+
+	<div align="left">
+		<form th:action="@{/viewgame}">
+			<input type="hidden" name="username" th:value="${username}" />
+			<input type="hidden" name="gameid" th:value="${game.id}" />
+			<input type="hidden" name="turn" id="turn" th:value="${turn}" />
+			<button type="submit" name="submit" value="value" class="link-button" onclick="previous();">Previous</button>
+			<button type="submit" name="submit" value="value" class="link-button" onclick="next();" >Next</button>
+		</form>
+	</div>
+	
+    <script>
+		var inputImgData;
+		inputImgData = document.getElementById("inImgData").value;
+		//alert(inputImgData.toString());
+		var canvas = document.getElementById('myCanvas');
+		var ctx = canvas.getContext('2d');		
+		var dataSize = inputImgData.toString().length;
+		var painting = document.getElementById('paint');
+		var paint_style = getComputedStyle(painting);
+		canvas.width = parseInt(paint_style.getPropertyValue('width'));
+		canvas.height = parseInt(paint_style.getPropertyValue('height'));
+		
+		var image;
+		image = new Image();
+		image.src = inputImgData.toString();
+		ctx.drawImage(image, 0, 0);
+		
+		function next() { 
+			var nextTurn;
+			nextTurn = parseInt(document.getElementById("turn").value) + 1;		
+			document.getElementById("turn").value = nextTurn;
+		}
+		
+		function previous() { 
+			var prevTurn;
+			prevTurn = parseInt(document.getElementById("turn").value) - 1;
+			document.getElementById("turn").value = prevTurn;
+		}
+    </script>
+	
+	<p>	
+		<div align="right">
+ 			<form th:action="@{/mainPage}">
+				<input type="hidden" name="username" th:value="${username}" />
+				<button type="submit" name="submit" value="value" class="link-button">or go back to homepage</button>
+       		</form>
+		</div>
+	</p>
+	
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+</article>
+<footer>therealZADS</footer>
+
+</div>
+</body>
+</html>
