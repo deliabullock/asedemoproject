@@ -61,7 +61,7 @@ article {
 <div class="container">
 
 <header>
-   <h1>Create a New Tele<font style="color: yellow">strations</font> Game!</h1>
+   <h1>Tele<font style="color: yellow">strations</font> Game!</h1>
 	<form method="GET" th:action="@{/logout}">
 		<button id="logout" type="submit">log out</button>
 	</form>
@@ -75,17 +75,22 @@ article {
 	<h1>Ok let's look at this!</h1>
 	<p>
 		Game:<div th:text="${game.name}"></div>
-	</p>
-	<p>
 		Length:<div th:text="${game.length}"></div>
 		Current Place:<div th:text="${game.currLength}"></div>
 	</p>
 
-	<div align="left">
+	<!--<div align="left">
 		<form th:action="@{/userjoining}">
 			<input type="hidden" name="username" th:value="${username}" />
 			<input type="hidden" name="gameid" th:value="${game.id}" />
             <button type="submit" name="submit" value="value" class="link-button">Join game!</button>
+        </form>
+    </div>-->
+	<div align="left">
+		<form th:action="@{/viewgame}">
+			<input type="hidden" name="username" th:value="${username}" />
+			<input type="hidden" name="gameid" th:value="${game.id}" />
+            <button type="submit" name="submit" value="value" class="link-button">View Only</button>
         </form>
     </div>
 	
