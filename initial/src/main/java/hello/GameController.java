@@ -16,15 +16,18 @@ public class GameController {
 	private UserRepository repository;
 	@Autowired
 	private PasswordRepository pwRepo;
-        @Autowired
-        private GameRepository gameRepo;
-        @Autowired
-        private PhraseRepository phraseRepo;
+	@Autowired
+	private GameRepository gameRepo;
+	@Autowired
+	private PhraseRepository phraseRepo;
+	@Autowired
+	private ImageRepository imageRepo;
 	
 	@RequestMapping("/userjoining")
 	public String userJoiningGame(
 			@RequestParam(value = "username", required = true) String username,
-			@RequestParam(value = "gameid", required = true) String gameid, Model model) {
+			@RequestParam(value = "gameid", required = true) String gameid, 
+			Model model) {
 		Game game = gameRepo.findById(gameid);
 		if (game == null) {
 			model.addAttribute("username", username);
@@ -34,10 +37,16 @@ public class GameController {
 		}		
 		model.addAttribute("username", username);
 		model.addAttribute("game", gameRepo.findById(gameid));
+		//model.addAttribute("phrase", phraseRepo.findById(gameRepo.findById(gameid).getLastPhrase()).getPhrase());
+		
 		model.addAttribute("error", "");
-		if(game.getCurrLength() % 2 == 0){
+		if(game.getCurrLength() % 2 == 1){
+			//model.addAttribute("imgData0", imageRepo.findById(gameRepo.findById(gameid).getLastImage()).getImage());
+			model.addAttribute("phrase", phraseRepo.findById(gameRepo.findById(gameid).getLastPhrase()).getPhrase());
 			return "guessimage";
 		} else {
+			model.addAttribute("imgData0", imageRepo.findById(gameRepo.findById(gameid).getLastImage()).getImage());
+			//model.addAttribute("phrase", phraseRepo.findById(gameRepo.findById(gameid).getLastPhrase()).getPhrase());
 			return "guessphrase";
 		}
 	}
@@ -45,9 +54,12 @@ public class GameController {
 	@RequestMapping("/phraseguess")
 	public String showPhraseGuess(
 			@RequestParam(value = "username", required = true) String username,
-			@RequestParam(value = "gameid", required = true) String gameid, Model model) {
+			@RequestParam(value = "gameid", required = true) String gameid, 
+			@RequestParam(value = "phrase") String phrase,
+			Model model) {
 		model.addAttribute("username", username);
 		model.addAttribute("game", gameRepo.findById(gameid));
+		model.addAttribute("phrase", phrase);
 		model.addAttribute("error", "");
 		return "guessphrase";
 	}
@@ -103,7 +115,7 @@ public class GameController {
 			@RequestParam(value = "username", required = true) String username,
 			@RequestParam(value = "gameid", required = true) String gameid, 
 			@RequestParam(value = "currlen", required = true) int currLength, 
-			@RequestParam(value = "image") String image, Model model) {
+			@RequestParam(value = "imgData") String imgData, Model model) {
 		Game game = gameRepo.findById(gameid);
 		if (game == null || game.getCurrLength() != currLength){
 			model.addAttribute("username", username);
@@ -111,7 +123,7 @@ public class GameController {
 			model.addAttribute("msg", "It seems another player submitted a guess for this step while you were making your guess. Your guess could not be submitted. Sorry!");
 			return "messagePage";
 		}
-		if (image == null || image == ""){
+		if (imgData == null || imgData == ""){
 			model.addAttribute("username", username);
 			model.addAttribute("game", gameRepo.findById(gameid));
 			model.addAttribute("phrase", phraseRepo.findById(gameRepo.findById(gameid).getLastPhrase()).getPhrase());
@@ -119,11 +131,10 @@ public class GameController {
 			return "guessimage";
 		}
 
-		// Create phrase and add it to game
-		//Phrase phraseObj = new Phrase(username, phrase);
-		//phraseRepo.save(phraseObj);
-		// TODO: add this when image works
-		game.addImage(image);
+		// TODO: add this when image works - done?
+		Image imageObj = new Image(username, imgData);
+		imageRepo.save(imageObj);
+		game.addImage(imageObj.getId());
 	
 		// Add game to users in progress games!
 		game.addPlayer(username);
