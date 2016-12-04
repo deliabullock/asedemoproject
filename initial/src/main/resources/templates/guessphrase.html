@@ -76,13 +76,79 @@ article {
 	<p>
 		Game: <div th:text="${game.name}"></div>
 		Length: <div th:text="${game.length}"></div>
-		Length: <div th:="${game.length}"></div>
 		Current Place: <div th:text="${game.currLength}"></div>
 	</p>
 
 	<h1>What phrase is this drawing depicting?</h1>
 
 	<!-- DRAWING THING HERE -->
+		<input type="hidden" name="inImgData" id="inImgData" th:value="${imgData0}" />
+	
+  	<div class="imgcont" id="paint">
+		<canvas id="myCanvas" style="border:1px solid #000000;">
+			Your browser does not support the HTML5 canvas tag.
+		</canvas>
+	</div>
+	
+    <script>
+		var inputImgData;
+		inputImgData = document.getElementById("inImgData").value;
+		//alert(inputImgData.toString());
+		var canvas = document.getElementById('myCanvas');
+		var ctx = canvas.getContext('2d');		
+		var dataSize = inputImgData.toString().length;
+		var painting = document.getElementById('paint');
+		var paint_style = getComputedStyle(painting);
+		canvas.width = parseInt(paint_style.getPropertyValue('width'));
+		canvas.height = parseInt(paint_style.getPropertyValue('height'));
+		
+		if (dataSize > 5) {
+			var image;
+			image = new Image();
+			image.src = inputImgData.toString();
+			ctx.drawImage(image, 0, 0);
+		
+		}
+
+			var mouse = {x: 0, y: 0};
+			 
+			canvas.addEventListener('mousemove', function(e) {
+			  mouse.x = e.pageX - this.offsetLeft;
+			  mouse.y = e.pageY - this.offsetTop;
+			}, false);
+
+			ctx.lineWidth = 5;
+			ctx.lineJoin = 'round';
+			ctx.lineCap = 'round';
+			ctx.strokeStyle = '#000000';
+			 
+			canvas.addEventListener('mousedown', function(e) {
+				ctx.beginPath();
+				ctx.moveTo(mouse.x, mouse.y);
+			 
+				canvas.addEventListener('mousemove', onPaint, false);
+			}, false);
+			 
+			canvas.addEventListener('mouseup', function() {
+				canvas.removeEventListener('mousemove', onPaint, false);
+			}, false);
+			 
+			var onPaint = function() {
+				ctx.lineTo(mouse.x, mouse.y);
+				ctx.stroke();
+			};
+
+			
+		function saveImg() { 
+			image = new Image();
+
+			//get the base64 data
+			image.src = canvas.toDataURL('image/png');
+			var imgData = image.src;
+			
+			document.getElementById("imgData").value = imgData.toString();
+		}
+    </script>
 	
 	<p>
 		<div align="left">
