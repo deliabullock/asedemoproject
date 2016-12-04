@@ -75,8 +75,9 @@ article {
 	<h1>Ok let's look at this!</h1>
 	<p>
 		Game:<div th:text="${game.name}"></div>
+	</p>
+	<p>
 		Length:<div th:text="${game.length}"></div>
-		Length:<div th:="${game.length}"></div>
 		Current Place:<div th:text="${game.currLength}"></div>
 	</p>
 
@@ -84,104 +85,90 @@ article {
 		<form th:action="@{/userjoining}">
 			<input type="hidden" name="username" th:value="${username}" />
 			<input type="hidden" name="gameid" th:value="${game.id}" />
-                        <button type="submit" name="submit" value="value" class="link-button">Join game!</button>
-                </form>
-        </div>	
+            <button type="submit" name="submit" value="value" class="link-button">Join game!</button>
+        </form>
+    </div>
+	
+	<!--<input type="hidden" name="inImgData" id="inImgData" th:value="${imgData0}" />
 	
   	<div class="imgcont" id="paint">
 		<canvas id="myCanvas" style="border:1px solid #000000;">
 			Your browser does not support the HTML5 canvas tag.
 		</canvas>
 	</div>
-	<div class="imgcont" id="paint">
-		<canvas id="myCanvas2" style="border:1px solid #000000;">
-			Your browser does not support the HTML5 canvas tag.
-		</canvas>
-	</div>
 	
     <script>
+		var inputImgData;
+		inputImgData = document.getElementById("inImgData").value;
+		//alert(inputImgData.toString());
 		var canvas = document.getElementById('myCanvas');
-		var ctx = canvas.getContext('2d');
-		 
+		var ctx = canvas.getContext('2d');		
+		var dataSize = inputImgData.toString().length;
 		var painting = document.getElementById('paint');
 		var paint_style = getComputedStyle(painting);
 		canvas.width = parseInt(paint_style.getPropertyValue('width'));
 		canvas.height = parseInt(paint_style.getPropertyValue('height'));
 		
+		if (dataSize > 5) {
+			var image;
+			image = new Image();
+			image.src = inputImgData.toString();
+			ctx.drawImage(image, 0, 0);
 		
-		var mouse = {x: 0, y: 0};
-		 
-		canvas.addEventListener('mousemove', function(e) {
-		  mouse.x = e.pageX - this.offsetLeft;
-		  mouse.y = e.pageY - this.offsetTop;
-		}, false);
+		}
 
-		ctx.lineWidth = 5;
-		ctx.lineJoin = 'round';
-		ctx.lineCap = 'round';
-		ctx.strokeStyle = '#000000';
-		 
-		canvas.addEventListener('mousedown', function(e) {
-			ctx.beginPath();
-			ctx.moveTo(mouse.x, mouse.y);
-		 
-			canvas.addEventListener('mousemove', onPaint, false);
-		}, false);
-		 
-		canvas.addEventListener('mouseup', function() {
-			canvas.removeEventListener('mousemove', onPaint, false);
-		}, false);
-		 
-		var onPaint = function() {
-			ctx.lineTo(mouse.x, mouse.y);
-			ctx.stroke();
-		};
-	    
-	    		
-		var destinationCanvas = document.getElementById('myCanvas2');
+			var mouse = {x: 0, y: 0};
+			 
+			canvas.addEventListener('mousemove', function(e) {
+			  mouse.x = e.pageX - this.offsetLeft;
+			  mouse.y = e.pageY - this.offsetTop;
+			}, false);
 
-		destinationCanvas.width = parseInt(paint_style.getPropertyValue('width'));
-		destinationCanvas.height = parseInt(paint_style.getPropertyValue('height'));
-	
-		//get the destination context
-		destinationCtx = destinationCanvas.getContext('2d');
-		
+			ctx.lineWidth = 5;
+			ctx.lineJoin = 'round';
+			ctx.lineCap = 'round';
+			ctx.strokeStyle = '#000000';
+			 
+			canvas.addEventListener('mousedown', function(e) {
+				ctx.beginPath();
+				ctx.moveTo(mouse.x, mouse.y);
+			 
+				canvas.addEventListener('mousemove', onPaint, false);
+			}, false);
+			 
+			canvas.addEventListener('mouseup', function() {
+				canvas.removeEventListener('mousemove', onPaint, false);
+			}, false);
+			 
+			var onPaint = function() {
+				ctx.lineTo(mouse.x, mouse.y);
+				ctx.stroke();
+			};
+
+			
 		function saveImg() { 
-
-			var image, destinationCtx;
-
-			//create the image
 			image = new Image();
 
 			//get the base64 data
 			image.src = canvas.toDataURL('image/png');
 			var imgData = image.src;
 			
-			document.getElementById("imgData").innerHTML = imgData.toString();
-			
-			//get the destination context
-			destinationCtx = destinationCanvas.getContext('2d');
-
-			//copy the data
-			destinationCtx.drawImage(image, 0, 0);
-			
-			
-			alert(imgData);
+			document.getElementById("imgData").value = imgData.toString();
 		}
     </script>
-	<p id="imgData"></p>
-	
+	<p id="imgData1"></p>
+
 	<p>
 		<div align="left">
 			<form th:action="@{/game}" method="POST">
 				<input type="hidden" name="username" th:value="${username}" /> 
 				<input type="hidden" name="gameId" th:value="${game.id}" />
-				<input type="hidden" name="imgData" th:value="imgData" />
-				<input id="saveimg" type="button" value="Submit" onclick="saveImg();" />
+				<input type="hidden" name="imgData" id="imgData" th:value="${imgData}" />
+				<button id="submit" type="submit" onclick="saveImg();">Submit</button>
 			</form>
 		</div>
-		
-		
+	</p> -->
+	<p>	
 		<div align="right">
  			<form th:action="@{/mainPage}">
 				<input type="hidden" name="username" th:value="${username}" />
@@ -192,13 +179,6 @@ article {
 	
 	<br/>
 	<br/>
-	
-	<!--<img src="crayon-outline.png">-->
-	<!--<img src="${pageContext.request.contextPath}/crayon-outline.png"/>-->
-	<!--<img th:src="@{crayon-outline.png}"/>-->
-	
-	
-	
 	<br/>
 	<br/>
 	<br/>
