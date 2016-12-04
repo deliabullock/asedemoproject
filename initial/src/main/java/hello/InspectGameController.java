@@ -16,27 +16,35 @@ public class InspectGameController {
 	@Autowired
 	private GameRepository gameRepo;
 
-	@RequestMapping("/game")
-	public String showMainPage(
-			@RequestParam(value = "username", required = true) String username, 
-			@RequestParam(value = "gameId", required = true) String gameId, Model model) {
-		model.addAttribute("game", gameRepo.findById(gameId));
-		model.addAttribute("username", username);
-		return "game";
-	}
-	
-	@RequestMapping(value = "/game", method = RequestMethod.POST)
-	public String submit(
+	@RequestMapping(value = "/game", method = RequestMethod.GET)
+	public String showGame(
 			@RequestParam(value = "username", required = true) String username, 
 			@RequestParam(value = "gameId", required = true) String gameId, 
 			@RequestParam(value = "imgData", required = false) String imgData,
 			Model model) {
-		System.out.println(username);
-		System.out.println(imgData);
+		//System.out.println(username);
+		//System.out.println(imgData);
 		model.addAttribute("game", gameRepo.findById(gameId));
 		model.addAttribute("imgData", imgData);
 		model.addAttribute("username", username);
 		return "game";
 	}
 	
+	@RequestMapping(value = "/game", method = RequestMethod.POST)
+	public String submitImg(
+			@RequestParam(value = "username", required = true) String username, 
+			@RequestParam(value = "gameId", required = true) String gameId, 
+			@RequestParam(value = "imgData", required = false) String imgData,
+			Model model) {
+		//System.out.println(username);
+		//System.out.println(imgData);
+		model.addAttribute("game", gameRepo.findById(gameId));
+		model.addAttribute("imgData0", imgData);
+		model.addAttribute("username", username);
+		return "game";
+	}
+	
 }
+
+
+
