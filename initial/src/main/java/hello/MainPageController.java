@@ -24,8 +24,8 @@ public class MainPageController {
 		List<Game> completedGames = new ArrayList<Game>();
 
 		for (Game game : gameRepo.findAll()) {
-			System.out.println(game.getPlayers());
-			System.out.println(username);
+			//System.out.println(game.getPlayers());
+			//System.out.println(username);
 			if (!game.getPlayers().contains(username)){
 				if(game.getLength() > game.getCurrLength()){
 					ongoingGames.add(game);
