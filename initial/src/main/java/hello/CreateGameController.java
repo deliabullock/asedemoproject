@@ -14,6 +14,8 @@ public class CreateGameController {
 	
 	@Autowired
 	private GameRepository gameRepo;
+	@Autowired
+	private PhraseRepository phraseRepo;
  
 	@RequestMapping("/creategame")
 	public String showCreateGame(
@@ -22,17 +24,29 @@ public class CreateGameController {
 	}
 
 	@RequestMapping(value = "/creategame", method = RequestMethod.POST)
-	public String submit(@RequestParam("gameName") String name, @RequestParam(value = "username", required = true) String username, @RequestParam("length") String length, @RequestParam("phrase") String phrase, Model model) {	
+	public String submit(
+			@RequestParam("gameName") String name, 
+			@RequestParam(value = "username", required = true) String username, 
+			@RequestParam("length") String length, 
+			@RequestParam("phrase") String phrase, 
+			Model model) {	
 		int gameLength;
 		try{
-        		gameLength = Integer.parseInt(length);
-    		}catch(NumberFormatException e){
+        	gameLength = Integer.parseInt(length);
+    	}catch(NumberFormatException e){
 			return loadCreateGame(username, "Must enter game length greater than 0.", model);
-    		}
+    	}
+		
 		if (phrase == null || phrase == "" || name == null || phrase == "" || gameLength <= 0) {
 			return loadCreateGame(username, "Phrase and name fields must be nonempty. Length must be great than or equal to 1.", model);
 		}
-		gameRepo.save(new Game(name, phrase, username, gameLength, 0));	
+		
+		Game game = new Game(name, phrase, username, gameLength, 0);
+		Phrase phraseObj = new Phrase(username, phrase);
+		phraseRepo.save(phraseObj);
+		game.addPhrase(phraseObj.getId());
+		gameRepo.save(game);	
+		
 		return loadCreateGame(username, name + " game successfully created!", model);
 	}
 
