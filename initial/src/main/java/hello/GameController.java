@@ -34,7 +34,7 @@ public class GameController {
 			model.addAttribute("header", "Uh oh!");
 			model.addAttribute("msg", "There seems to be an issue with this game! Sorry about That!");
 			return "messagePage";
-		}		
+		}
 		model.addAttribute("username", username);
 		model.addAttribute("game", gameRepo.findById(gameid));
 		//model.addAttribute("phrase", phraseRepo.findById(gameRepo.findById(gameid).getLastPhrase()).getPhrase());
