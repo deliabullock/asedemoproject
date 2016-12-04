@@ -27,6 +27,7 @@ public class Game {
     	this.creator = _creator;
     	this.length = _length;
     	this.currLength = _currLength;
+		//this.currLength = 1; //always starts on turn 1
 		this.players = new ArrayList<String>();
 		this.players.add(this.creator);
 		String [] phraseId = new String[2];
@@ -86,6 +87,19 @@ public class Game {
 
     public String getLastImage() {
         String [] imageId = ImagePhrasePairs.get(ImagePhrasePairs.size()-1);
+		return imageId[0];
+    }
+	
+	public String getTurnPhrase(int turnNum) {
+        String [] phraseId = ImagePhrasePairs.get(turnNum);
+		return phraseId[1];
+    }
+	public String getTurnImage(int turnNum) {
+		if(turnNum + 1 < this.length)
+			turnNum++;
+		else
+			return null;
+        String [] imageId = ImagePhrasePairs.get(turnNum);
 		return imageId[0];
     }
     
