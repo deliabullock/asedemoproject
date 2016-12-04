@@ -88,9 +88,9 @@ article {
 		Your ongoing games:
 		<br/>
     		<tr th:each="game :  ${userongoinglist}">
- 			<form method="POST" th:action="@{/game}">
+ 			<form method="POST" th:action="@{/userjoining}">
            			<input type="hidden" name="username" th:value="${username}" />
-           			<input type="hidden" name="gameId" th:value="${game.id}" />
+           			<input type="hidden" name="gameid" th:value="${game.id}" />
           			<button th:text="${game.name}" type="submit" name="submit" value="value" class="link-button"></button>
        			</form>
 		</tr>
@@ -105,7 +105,7 @@ article {
     		<tr th:each="game :  ${usercompletedlist}">
  			<form method="POST" th:action="@{/game}">
            			<input type="hidden" name="username" th:value="${username}" />
-           			<input type="hidden" name="gameId" th:value="${game.id}" />
+           			<input type="hidden" name="gameid" th:value="${game.id}" />
           			<button th:text="${game.name}" type="submit" name="submit" value="value" class="link-button"></button>
        			</form>
 		</tr>
@@ -118,9 +118,9 @@ article {
 		Games to join:
 		<br/>
     		<tr th:each="game :  ${ongoinglist}">
- 			<form method="POST" th:action="@{/game}">
+ 			<form method="POST" th:action="@{/userjoining}">
            			<input type="hidden" name="username" th:value="${username}" />
-           			<input type="hidden" name="gameId" th:value="${game.id}" />
+           			<input type="hidden" name="gameid" th:value="${game.id}" />
           			<button th:text="${game.name}" type="submit" name="submit" value="value" class="link-button"></button>
        			</form>
 		</tr>
@@ -134,7 +134,7 @@ article {
     		<tr th:each="game :  ${completedlist}">
  			<form method="POST" th:action="@{/game}">
            			<input type="hidden" name="username" th:value="${username}" />
-           			<input type="hidden" name="gameId" th:value="${game.id}" />
+           			<input type="hidden" name="gameid" th:value="${game.id}" />
           			<button th:text="${game.name}" type="submit" name="submit" value="value" class="link-button"></button>
        			</form>
 		</tr>
