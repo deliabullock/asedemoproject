@@ -27,8 +27,12 @@ public class Game {
     	this.creator = _creator;
     	this.length = _length;
     	this.currLength = _currLength;
-	this.players = new ArrayList<String>();
-	this.players.add(this.creator);
+		this.players = new ArrayList<String>();
+		this.players.add(this.creator);
+		String [] phraseId = new String[2];
+		phraseId[0] = "000";
+		phraseId[1] = "000";
+		this.ImagePhrasePairs.add(phraseId);
     }
 
     public String getId() {
@@ -64,11 +68,11 @@ public class Game {
     }
 
     public void addPlayer(String creatorId){
-	this.players.add(creatorId);
+		this.players.add(creatorId);
     } 
 
     public List<String> getPlayers(){
-	return this.players;
+		return this.players;
     } 
 
     public void setCurrLength(int currLength) {
@@ -76,26 +80,30 @@ public class Game {
     }
 
     public String getLastPhrase() {
-        String [] imageId = ImagePhrasePairs.get(ImagePhrasePairs.size()-1);
-	return imageId[1];
+        String [] phraseId = ImagePhrasePairs.get(ImagePhrasePairs.size()-1);
+		return phraseId[1];
     }    
 
     public String getLastImage() {
         String [] imageId = ImagePhrasePairs.get(ImagePhrasePairs.size()-1);
-	return imageId[0];
+		return imageId[0];
     }
     
     public void addImage(String id) {
-	currLength = currLength + 1;
-        String [] phraseId = new String[2];
-        phraseId[0] = id;
-        ImagePhrasePairs.add(phraseId);
+		if (currLength < length) {
+			currLength = currLength + 1;
+			String [] phraseId = new String[2];
+			phraseId[0] = id;
+			ImagePhrasePairs.add(phraseId);
+		}
     }
   
     public void addPhrase(String id) {
-	currLength = currLength + 1;
-        String [] imageId = ImagePhrasePairs.remove(ImagePhrasePairs.size()-1);
-        imageId[1] = id;
-        ImagePhrasePairs.add(imageId);
+		if (currLength < length) {
+			currLength = currLength + 1;
+			String [] imageId = ImagePhrasePairs.remove(ImagePhrasePairs.size()-1);
+			imageId[1] = id;
+			ImagePhrasePairs.add(imageId);
+		}
     }  
 }    
