@@ -51,4 +51,3 @@ public class PasswordTest {
         this.mockMvc.perform(get("/creategame")).andDo(print()).andExpect(status().isOk());
     }*/
 }
-
