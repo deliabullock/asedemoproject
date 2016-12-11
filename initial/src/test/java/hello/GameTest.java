@@ -25,8 +25,8 @@ import java.util.List;
 @AutoConfigureMockMvc
 public class GameTest {
 
-    Game game;
-    //List<String> players;
+    private Game game;
+    //private List<String> players = new ArrayList()<>;
 
     @Autowired
     private CreateGameController controller;
@@ -34,9 +34,10 @@ public class GameTest {
 
     @Before
     public void setUp() {
-        game = new Game("Game1", "Tree", "steph", 5, 1);
-        game.addPlayer("John");
-        game.addPlayer("Fred");
+        //this.mockMvc = webAppContextSetup(webApplicationContext).build();
+        this.game = new Game("Game1", "Tree", "steph", 5, 1);
+        this.game.addPlayer("John");
+        this.game.addPlayer("Fred");
         //this.players.add("steph");
         //this.players.add("John");
         //this.players.add("Fred");
@@ -56,8 +57,8 @@ public class GameTest {
         assertTrue("Check that creator is added to players list: ", game.getPlayers().contains("steph"));
     }
 
-    /*@Test
+    @Test
     public void shouldReturnDefaultMessage() throws Exception {
-        this.mockMvc.perform(get("/creategame")).andDo(print()).andExpect(status().isOk());
-    }*/
+        //this.mockMvc.perform(get("/creategame")).andExpect(status().isOk());
+    }
 }

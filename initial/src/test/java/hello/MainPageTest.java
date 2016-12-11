@@ -15,6 +15,8 @@ public class MainPageTest {
     @Autowired
     private GameRepository gamerepo;
 
+    
+
     @Test
     public void contexLoads() throws Exception {
 
