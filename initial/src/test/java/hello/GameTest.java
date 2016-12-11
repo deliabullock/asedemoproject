@@ -35,8 +35,14 @@ public class GameTest {
     @Before
     public void setUp() {
         game = new Game("Game1", "Tree", "steph", 5, 1);
+        game.setCreator("bob");
+        game.setCreator("steph");
         game.addPlayer("John");
         game.addPlayer("Fred");
+        game.addImage("123");
+        game.addPhrase("123");
+        game.setCurrLength(2);
+        game.setLength(20);
         //this.players.add("steph");
         //this.players.add("John");
         //this.players.add("Fred");
@@ -54,6 +60,11 @@ public class GameTest {
         assertNotNull("Check that there's a length specified:", game.getLength());
         assertTrue("Check that players are being saved: ", !(game.getPlayers().isEmpty()));
         assertTrue("Check that creator is added to players list: ", game.getPlayers().contains("steph"));
+        assertNotNull("Check that current length is set: ", game.getCurrLength());
+        assertNotNull("Check that last phrase was added: ", game.getLastPhrase());
+        assertNotNull("Check that last image was added: ", game.getLastImage());
+        assertNotNull("Check that last turn 1 image was added: ", game.getTurnImage(0));
+        assertNotNull("Check that last turn 1 phrase was added: ", game.getTurnPhrase(0));
     }
 
     /*@Test
