@@ -44,6 +44,7 @@ public class GameTest {
         game.addPhrase("123");
         game.setCurrLength(2);
         game.setLength(20);
+        game.setName("Game0");
 
     }
 
@@ -54,7 +55,7 @@ public class GameTest {
         assertTrue("Check that game exists: ", game.getId() != "");
         assertEquals("Check that game is associated with correct creator : ", "steph", game.getCreator());
         assertNotNull("Check that there's input for the game name:", game.getName());
-        assertEquals("Check that game name is saved correctly: ", "Game1", game.getName());
+        assertEquals("Check that game name is saved correctly: ", "Game0", game.getName());
         assertNotNull("Check that there's a length specified:", game.getLength());
         assertTrue("Check that players are being saved: ", !(game.getPlayers().isEmpty()));
         assertTrue("Check that creator is added to players list: ", game.getPlayers().contains("steph"));
