@@ -42,7 +42,7 @@ public class PhraseTest {
     public void contexLoads() throws Exception {
         //make sure that controller is being created
         assertThat(controller).isNotNull();
-        //assertNotNull("Check that we can get the image id", image.getId()); // autoassigned by spring
+        assertEquals("Check that we can get the image id", null, phrase.getId()); // autoassigned by spring
         assertEquals("Check that we get the correct username: ","zion", phrase.getUsername());
         assertEquals("Check that we get the correct image data: ", "123", phrase.getPhrase());
     }
@@ -52,4 +52,3 @@ public class PhraseTest {
         this.mockMvc.perform(get("/creategame")).andDo(print()).andExpect(status().isOk());
     }*/
 }
-
